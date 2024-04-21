@@ -29,10 +29,12 @@ try{
 
 } catch (error){
 
-  throw new Error("Error");
+  throw new Error("something went wrong!");
+
+}
+
 }
 
 
-}
 
 

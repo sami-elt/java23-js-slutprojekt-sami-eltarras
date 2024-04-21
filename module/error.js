@@ -1,14 +1,10 @@
-export function displayError() {
-  const divEl = document.querySelector("#container");
-
-
-  if (data.total_results === 0) {
-    const errorMessage = document.createElement("p");
-
+export function displayErrorElement(error){
+   
+    const divEl = document.querySelector("#container");
+    divEl.innerHTML = "";
+    const errorMessage = document.createElement("h1");
+    
     divEl.append(errorMessage);
-
-    errorMessage.textContent = "Cant find";
+  
+    errorMessage.textContent = error;
   }
-
-
-}
