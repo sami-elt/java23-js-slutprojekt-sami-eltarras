@@ -1,20 +1,24 @@
 export function displayTop10(movies) {
   const divEl = document.querySelector("#container");
   divEl.innerHTML = "";
+  console.log(movies);
 
   for (const { title, release_date, poster_path } of movies) {
     const infoEl = document.createElement("p");
     const imgEl = document.createElement("img");
+    const nameEl = document.createElement("h1");
 
-    divEl.append(infoEl, imgEl);
+    divEl.append(nameEl, infoEl, imgEl);
+
+    nameEl.textContent = `${title}`;
 
     imgEl.src = `https://image.tmdb.org/t/p/w200/` + poster_path;
 
-    infoEl.textContent = title + release_date;
+    infoEl.textContent = `Release date: ${release_date}`;
   }
 }
 
-export function displayPerson(persons) {
+export function displayPersons(persons) {
   const divEl = document.querySelector("#container");
 
   divEl.innerHTML = "";
@@ -67,6 +71,10 @@ export function displayMovie(movies) {
     imgEl.src = `https://image.tmdb.org/t/p/w200/` + poster_path;
     nameEl.textContent = title;
     infoEl.textContent = `Release Date: ${release_date} Description: ${overview}`;
+
+    if (poster_path === null) {
+      imgEl.src = "./img/defaultimg.jpg";
+    }
   }
 }
 
@@ -79,4 +87,3 @@ function cantFindSearch(value) {
     cantFind.textContent = "you didnt find anything, try again";
   }
 }
-

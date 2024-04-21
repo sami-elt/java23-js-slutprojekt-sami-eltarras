@@ -1,5 +1,5 @@
 import { getTop10, searchByMovieOrPerson } from "./module/movieAPI.js";
-import { displayMovie, displayPerson, displayTop10} from "./module/display.js";
+import { displayMovie, displayPersons, displayTop10} from "./module/display.js";
 import { displayErrorElement } from "./module/error.js";
 
 const popularButton = document.querySelector("#popular");
@@ -24,6 +24,6 @@ form.addEventListener("submit", (event) => {
   if (select === "movie") {
     searchByMovieOrPerson(input).then(displayMovie).catch(displayErrorElement);
   } else if (select === "person") {
-    searchByMovieOrPerson(input).then(displayPerson).catch(displayErrorElement);
+    searchByMovieOrPerson(input).then(displayPersons).catch(displayErrorElement);
   }
 });
