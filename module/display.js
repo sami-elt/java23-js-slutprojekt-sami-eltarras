@@ -32,7 +32,7 @@ export function displayPerson(persons) {
 
     
     if (person.profile_path === null) {
-      imgEl.src = "/img/defaultImg.jpg";
+      imgEl.src = "./img/defaultImg.jpg";
     } else if (person.known_for_department === null) {
       infoEl.textContent = "No information";
     } 
