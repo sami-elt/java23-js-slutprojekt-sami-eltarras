@@ -18,8 +18,6 @@ export async function getTop10(value) {
 export async function searchByMovieOrPerson(value) {
 
 try{
-
-
   const select = document.querySelector("select").value;
 
   const url = `https://api.themoviedb.org/3/search/${select}?query=${value}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`;
