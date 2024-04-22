@@ -1,0 +1,19 @@
+body {
+    background-color: beige;
+    width: 100%;
+    height: 120vh;
+}
+
+#divContainer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+
+}
+
+#container{
+
+    display: flexbox;
+    width: fit-content;
+    block-size: fit-content;
+}
