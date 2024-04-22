@@ -1,29 +1,7 @@
-export function displayTop10(movies) {
-  const divEl = document.querySelector("#container");
-  divEl.innerHTML = "";
-  console.log(movies);
-
-  for (const { title, release_date, poster_path } of movies) {
-    const infoEl = document.createElement("p");
-    const imgEl = document.createElement("img");
-    const nameEl = document.createElement("h1");
-
-    divEl.append(nameEl, infoEl, imgEl);
-
-    nameEl.textContent = `${title}`;
-
-    imgEl.src = `https://image.tmdb.org/t/p/w200/` + poster_path;
-
-    infoEl.textContent = `Release date: ${release_date}`;
-  }
-}
-
 export function displayPersons(persons) {
   const divEl = document.querySelector("#container");
 
   divEl.innerHTML = "";
-
-  cantFindSearch(persons);
 
   for (const person of persons) {
     const nameEl = document.createElement("h1");
@@ -54,36 +32,25 @@ export function displayPersons(persons) {
   }
 }
 
-export function displayMovie(movies) {
-  const divEl = document.querySelector("#container");
+export function displayTop10(x) {
+  return function (movies) {
+    const divEl = document.querySelector("#container");
+    divEl.innerHTML = "";
 
-  divEl.innerHTML = "";
+    for (const { title, release_date, poster_path, overview } of movies) {
+      const infoEl = document.createElement("p");
+      const imgEl = document.createElement("img");
+      const nameEl = document.createElement("h1");
+      const infoElDesc = document.createElement("p");
 
-  cantFindSearch(movies);
+      divEl.append(nameEl, imgEl, infoEl, infoElDesc, infoElDesc);
 
-  for (const { overview, poster_path, title, release_date } of movies) {
-    const nameEl = document.createElement("h1");
-    const infoEl = document.createElement("p");
-    const imgEl = document.createElement("img");
+      if (x) infoElDesc.textContent = overview;
 
-    divEl.append(nameEl, imgEl, infoEl);
+      nameEl.textContent = title;
 
-    imgEl.src = `https://image.tmdb.org/t/p/w200/` + poster_path;
-    nameEl.textContent = title;
-    infoEl.textContent = `Release Date: ${release_date} Description: ${overview}`;
-
-    if (poster_path === null) {
-      imgEl.src = "./img/defaultimg.jpg";
+      imgEl.src = `https://image.tmdb.org/t/p/w200/` + poster_path;
+      infoEl.textContent = `Release date: ${release_date}`;
     }
-  }
-}
-
-function cantFindSearch(value) {
-  const divEl = document.querySelector("#container");
-  if (value == 0) {
-    const cantFind = document.createElement("h1");
-    divEl.append(cantFind);
-
-    cantFind.textContent = "you didnt find anything, try again";
-  }
+  };
 }
