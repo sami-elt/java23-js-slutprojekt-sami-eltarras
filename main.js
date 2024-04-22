@@ -1,6 +1,6 @@
 import { getTop10, searchByMovieOrPerson } from "./module/movieAPI.js";
 import { displayMovie, displayPersons, displayTop10} from "./module/display.js";
-import { displayErrorElement } from "./module/error.js";
+import { displayErrorElement } from "./module/displayError.js";
 
 const popularButton = document.querySelector("#popular");
 const topRatedButton = document.querySelector("#topRated");
