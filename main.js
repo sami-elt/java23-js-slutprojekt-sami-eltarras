@@ -1,5 +1,5 @@
 import { getTop10, searchByMovieOrPerson } from "./module/movieAPI.js";
-import { displayPersons, displayTop10 } from "./module/display.js";
+import { displayPersons, displayMovies } from "./module/display.js";
 import { displayErrorElement } from "./module/displayError.js";
 
 const popularButton = document.querySelector("#popular");
@@ -7,11 +7,11 @@ const topRatedButton = document.querySelector("#topRated");
 const form = document.querySelector("form");
 
 popularButton.addEventListener("click", () => {
-  getTop10("popular").then(displayTop10(false)).catch(displayErrorElement);
+  getTop10("popular").then(displayMovies(false)).catch(displayErrorElement);
 });
 
 topRatedButton.addEventListener("click", () => {
-  getTop10("top_rated").then(displayTop10).catch(displayErrorElement);
+  getTop10("top_rated").then(displayMovies(false)).catch(displayErrorElement);
 });
 
 form.addEventListener("submit", (event) => {
@@ -23,7 +23,7 @@ form.addEventListener("submit", (event) => {
 
   if (select === "movie") {
     searchByMovieOrPerson(input)
-      .then(displayTop10(true))
+      .then(displayMovies(true))
       .catch(displayErrorElement);
   } else if (select === "person") {
     searchByMovieOrPerson(input)

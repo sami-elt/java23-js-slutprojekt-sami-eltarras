@@ -14,26 +14,20 @@ export async function getTop10(value) {
 }
 
 export async function searchByMovieOrPerson(value) {
-  try {
-    const select = document.querySelector("select").value;
+  const select = document.querySelector("select").value;
 
-    const url = `https://api.themoviedb.org/3/search/${select}?query=${value}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`;
+  const url = `https://api.themoviedb.org/3/search/${select}?query=${value}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`;
 
-    const respons = await fetch(url);
+  const respons = await fetch(url);
+
+  if (respons.ok) {
     const data = await respons.json();
 
+    if (data.results == 0) {
+      throw new Error("can't find what you're looking for. try again");
+    }
     return data.results;
-  } catch (error) {
-    throw new Error("something went wrong!");
-  }
-}
-
-function cantFindSearch(value) {
-  const divEl = document.querySelector("#container");
-  if (value == 0) {
-    const cantFind = document.createElement("h1");
-    divEl.append(cantFind);
-
-    cantFind.textContent = "you didnt find anything, try again";
+  } else if (!respons.ok) {
+    throw new Error("something went wrong");
   }
 }

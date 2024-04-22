@@ -21,18 +21,18 @@ export function displayPersons(persons) {
     }
 
     for (const { original_title, media_type, name } of person.known_for) {
-      const infoEl1 = document.createElement("p");
+      const knownForEl = document.createElement("p");
 
-      divEl.append(infoEl1);
+      divEl.append(knownForEl);
 
       if (original_title == undefined) {
-        infoEl1.textContent = `${media_type}: ${name}`;
-      } else infoEl1.textContent = `${media_type}: ${original_title}`;
+        knownForEl.textContent = `${media_type}: ${name}`;
+      } else knownForEl.textContent = `${media_type}: ${original_title}`;
     }
   }
 }
 
-export function displayTop10(x) {
+export function displayMovies(showDescOption) {
   return function (movies) {
     const divEl = document.querySelector("#container");
     divEl.innerHTML = "";
@@ -45,12 +45,16 @@ export function displayTop10(x) {
 
       divEl.append(nameEl, imgEl, infoEl, infoElDesc, infoElDesc);
 
-      if (x) infoElDesc.textContent = overview;
+      if (showDescOption) infoElDesc.textContent = overview;
 
       nameEl.textContent = title;
 
       imgEl.src = `https://image.tmdb.org/t/p/w200/` + poster_path;
       infoEl.textContent = `Release date: ${release_date}`;
+
+      if (poster_path === null) {
+        imgEl.src = "./img/defaultImg.jpg";
+      }
     }
   };
 }
