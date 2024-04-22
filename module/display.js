@@ -37,7 +37,7 @@ export function displayPersons(persons) {
     imgEl.src = `https://image.tmdb.org/t/p/w200/` + person.profile_path;
 
     if (person.profile_path === null) {
-      imgEl.src = "./img/defaultimg.jpg";
+      imgEl.src = "./img/defaultImg.jpg";
     } else if (person.known_for_department === null) {
       infoEl.textContent = "No information";
     }
