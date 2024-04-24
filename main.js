@@ -6,6 +6,7 @@ const popularButton = document.querySelector("#popular");
 const topRatedButton = document.querySelector("#topRated");
 const form = document.querySelector("form");
 
+//toggle description for movies with false or true
 popularButton.addEventListener("click", () => {
   getTop10("popular").then(displayMovies(false)).catch(displayErrorElement);
 });

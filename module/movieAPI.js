@@ -16,18 +16,24 @@ export async function getTop10(value) {
 export async function searchByMovieOrPerson(value) {
   const select = document.querySelector("select").value;
 
-  const url = `https://api.themoviedb.org/3/search/${select}?query=${value}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`;
+  try {
+    const url = `https://api.themoviedb.org/3/search/${select}?query=${value}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`;
+    const respons = await fetch(url);
 
-  const respons = await fetch(url);
-
-  if (respons.ok) {
     const data = await respons.json();
 
+    //Error handling - check if the search is empty or if the respons is not ok with custom message.
     if (data.results == 0) {
-      throw new Error("can't find what you're looking for. try again");
+      throw new Error("try again");
     }
+    if (!respons.ok) {
+      throw new Error();
+    }
+
     return data.results;
-  } else if (!respons.ok) {
-    throw new Error("something went wrong");
+  } catch (error){
+    if (error.message.includes("try again")) {
+      throw new Error("can't find what you're looking for. try again");
+    } else throw new Error("something went wrong!");
   }
 }

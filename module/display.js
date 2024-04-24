@@ -14,6 +14,7 @@ export function displayPersons(persons) {
     infoEl.textContent = person.known_for_department;
     imgEl.src = `https://image.tmdb.org/t/p/w200/` + person.profile_path;
 
+    //default img and text if the api doesnt provide one
     if (person.profile_path === null) {
       imgEl.src = "./img/defaultImg.jpg";
     } else if (person.known_for_department === null) {
@@ -24,7 +25,7 @@ export function displayPersons(persons) {
       const knownForEl = document.createElement("p");
 
       divEl.append(knownForEl);
-
+      //checks if its a movie or tvshow.
       if (original_title == undefined) {
         knownForEl.textContent = `${media_type}: ${name}`;
       } else knownForEl.textContent = `${media_type}: ${original_title}`;
@@ -32,6 +33,7 @@ export function displayPersons(persons) {
   }
 }
 
+//parameter for boolean value to toggle description and returns the function so you can display movies.
 export function displayMovies(showDescOption) {
   return function (movies) {
     const divEl = document.querySelector("#container");
